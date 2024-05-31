@@ -8,7 +8,6 @@ exports.ordersPage = (req, res)=>{
 exports.getAllOrders = async (req,res)=>{
     try{
         const orders = await Order.find();
-        console.log(orders);
         res.status(201).json({orders, success: true})
 
     }
