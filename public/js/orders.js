@@ -3,7 +3,7 @@ const socket = io();
 socket.on('orderStatus', async (status, orderId) => {
     const openOrderId = document.getElementById('orderId').value;
     if (orderId === openOrderId) {
-        showModal(status)
+        updateOrderStatus(status)
     }
 });
 
@@ -47,10 +47,8 @@ function renderOrders(orders) {
     });
 }
 
-// Function to handle showing the modal with tracking information
-function showModal(currentStatus) {
-   
-    const modal = document.getElementById('tracking-modal');
+
+function updateOrderStatus(currentStatus){
     const trackingSteps = document.querySelectorAll('.tracking-step');
 
     let statusReached = false;
@@ -73,8 +71,14 @@ function showModal(currentStatus) {
             step.classList.remove('completed')
         }
     });
+}
 
+// Function to handle showing the modal with tracking information
+function showModal(currentStatus) {
+   
+    const modal = document.getElementById('tracking-modal');
     modal.style.display = "block";
+    updateOrderStatus(currentStatus)
 }
 
 // Close the modal when the user clicks on <span> (x)
